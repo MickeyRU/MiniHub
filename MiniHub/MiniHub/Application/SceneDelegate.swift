@@ -9,7 +9,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         let calculateService = CalculateService()
-        let viewModel = MainViewModel(calculateService: calculateService)
+        let miniAppManager = MiniAppManager()
+        let viewModel = MainViewModel(calculateService: calculateService, miniAppManager: miniAppManager)
         let viewController = MainViewController(viewModel: viewModel)
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()

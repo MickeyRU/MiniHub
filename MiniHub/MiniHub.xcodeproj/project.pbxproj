@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,10 +12,11 @@
 		BEE0CAE62C8844710013BC17 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE52C8844710013BC17 /* MainViewController.swift */; };
 		BEE0CAEB2C8844720013BC17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE0CAEA2C8844720013BC17 /* Assets.xcassets */; };
 		BEE0CAEE2C8844720013BC17 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BEE0CAED2C8844720013BC17 /* Base */; };
-		BEE0CAFD2C8849AF0013BC17 /* MainViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAFC2C8849AF0013BC17 /* MainViewModelProtocol.swift */; };
+		BEE0CAFD2C8849AF0013BC17 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAFC2C8849AF0013BC17 /* MainViewModel.swift */; };
 		BEE0CAFF2C884D110013BC17 /* MiniAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAFE2C884D110013BC17 /* MiniAppCell.swift */; };
 		BEE0CB022C88781E0013BC17 /* CalculateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CB012C88781E0013BC17 /* CalculateService.swift */; };
 		BEE0CB042C887CBC0013BC17 /* MiniAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CB032C887CBC0013BC17 /* MiniAppManager.swift */; };
+		BEF179182C88924100886708 /* TimeZoneMiniApp in Frameworks */ = {isa = PBXBuildFile; productRef = BEF179172C88924100886708 /* TimeZoneMiniApp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +27,7 @@
 		BEE0CAEA2C8844720013BC17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEE0CAED2C8844720013BC17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEE0CAEF2C8844720013BC17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEE0CAFC2C8849AF0013BC17 /* MainViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelProtocol.swift; sourceTree = "<group>"; };
+		BEE0CAFC2C8849AF0013BC17 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		BEE0CAFE2C884D110013BC17 /* MiniAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniAppCell.swift; sourceTree = "<group>"; };
 		BEE0CB012C88781E0013BC17 /* CalculateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateService.swift; sourceTree = "<group>"; };
 		BEE0CB032C887CBC0013BC17 /* MiniAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniAppManager.swift; sourceTree = "<group>"; };
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEF179182C88924100886708 /* TimeZoneMiniApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +120,7 @@
 		BEE0CAFB2C8849460013BC17 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				BEE0CAFC2C8849AF0013BC17 /* MainViewModelProtocol.swift */,
+				BEE0CAFC2C8849AF0013BC17 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -148,6 +150,9 @@
 			dependencies = (
 			);
 			name = MiniHub;
+			packageProductDependencies = (
+				BEF179172C88924100886708 /* TimeZoneMiniApp */,
+			);
 			productName = MiniHub;
 			productReference = BEE0CADE2C8844710013BC17 /* MiniHub.app */;
 			productType = "com.apple.product-type.application";
@@ -176,6 +181,9 @@
 				Base,
 			);
 			mainGroup = BEE0CAD52C8844710013BC17;
+			packageReferences = (
+				BEF179162C88924100886708 /* XCLocalSwiftPackageReference "../TimeZoneMiniApp" */,
+			);
 			productRefGroup = BEE0CADF2C8844710013BC17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -203,7 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE0CAE62C8844710013BC17 /* MainViewController.swift in Sources */,
-				BEE0CAFD2C8849AF0013BC17 /* MainViewModelProtocol.swift in Sources */,
+				BEE0CAFD2C8849AF0013BC17 /* MainViewModel.swift in Sources */,
 				BEE0CB042C887CBC0013BC17 /* MiniAppManager.swift in Sources */,
 				BEE0CAE22C8844710013BC17 /* AppDelegate.swift in Sources */,
 				BEE0CAFF2C884D110013BC17 /* MiniAppCell.swift in Sources */,
@@ -278,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -335,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -429,6 +437,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		BEF179162C88924100886708 /* XCLocalSwiftPackageReference "../TimeZoneMiniApp" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../TimeZoneMiniApp;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BEF179172C88924100886708 /* TimeZoneMiniApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimeZoneMiniApp;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BEE0CAD62C8844710013BC17 /* Project object */;
 }

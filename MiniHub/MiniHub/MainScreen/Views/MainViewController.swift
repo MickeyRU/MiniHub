@@ -12,6 +12,7 @@ final class MainViewController: UIViewController {
         tableView.register(MiniAppCell.self, forCellReuseIdentifier: MiniAppCell.reuseIndentifier)
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         return tableView
     }()
     

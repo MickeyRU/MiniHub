@@ -9,12 +9,14 @@ protocol MainViewModelProtocol {
 }
 
 final class MainViewModel: MainViewModelProtocol {
-    private let calculateService: HeightCalculate
+    private let calculateService: HeightCalculateProtocol
+    private let miniAppManager: AppManagerProtocol
     private(set) var isHalfHeightMode: Bool = false
     
-    init(calculateService: HeightCalculate) {
+    init(calculateService: HeightCalculateProtocol, miniAppManager: AppManagerProtocol) {
         self.isHalfHeightMode = false
         self.calculateService = calculateService
+        self.miniAppManager = miniAppManager
     }
     
     func numberOfRowsInSection() -> Int {
