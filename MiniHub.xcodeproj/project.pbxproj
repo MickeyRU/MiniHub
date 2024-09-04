@@ -12,6 +12,10 @@
 		BEE0CAE62C8844710013BC17 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE52C8844710013BC17 /* MainViewController.swift */; };
 		BEE0CAEB2C8844720013BC17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE0CAEA2C8844720013BC17 /* Assets.xcassets */; };
 		BEE0CAEE2C8844720013BC17 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BEE0CAED2C8844720013BC17 /* Base */; };
+		BEE0CAFD2C8849AF0013BC17 /* MainViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAFC2C8849AF0013BC17 /* MainViewModelProtocol.swift */; };
+		BEE0CAFF2C884D110013BC17 /* MiniAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAFE2C884D110013BC17 /* MiniAppCell.swift */; };
+		BEE0CB022C88781E0013BC17 /* CalculateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CB012C88781E0013BC17 /* CalculateService.swift */; };
+		BEE0CB042C887CBC0013BC17 /* MiniAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CB032C887CBC0013BC17 /* MiniAppManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		BEE0CAEA2C8844720013BC17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEE0CAED2C8844720013BC17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEE0CAEF2C8844720013BC17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE0CAFC2C8849AF0013BC17 /* MainViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelProtocol.swift; sourceTree = "<group>"; };
+		BEE0CAFE2C884D110013BC17 /* MiniAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniAppCell.swift; sourceTree = "<group>"; };
+		BEE0CB012C88781E0013BC17 /* CalculateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateService.swift; sourceTree = "<group>"; };
+		BEE0CB032C887CBC0013BC17 /* MiniAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniAppManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +64,9 @@
 			children = (
 				BEE0CAF52C8844AC0013BC17 /* Application */,
 				BEE0CAF82C8845020013BC17 /* Configuration */,
-				BEE0CAE52C8844710013BC17 /* MainViewController.swift */,
+				BEE0CAF92C8848DF0013BC17 /* MainScreen */,
 				BEE0CAF72C8844EB0013BC17 /* Resources */,
+				BEE0CB002C8877C40013BC17 /* Services */,
 			);
 			path = MiniHub;
 			sourceTree = "<group>";
@@ -86,6 +95,41 @@
 				BEE0CAEF2C8844720013BC17 /* Info.plist */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		BEE0CAF92C8848DF0013BC17 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0CAFB2C8849460013BC17 /* ViewModel */,
+				BEE0CAFA2C88492E0013BC17 /* Views */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		BEE0CAFA2C88492E0013BC17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0CAE52C8844710013BC17 /* MainViewController.swift */,
+				BEE0CAFE2C884D110013BC17 /* MiniAppCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BEE0CAFB2C8849460013BC17 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0CAFC2C8849AF0013BC17 /* MainViewModelProtocol.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BEE0CB002C8877C40013BC17 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0CB012C88781E0013BC17 /* CalculateService.swift */,
+				BEE0CB032C887CBC0013BC17 /* MiniAppManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +203,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE0CAE62C8844710013BC17 /* MainViewController.swift in Sources */,
+				BEE0CAFD2C8849AF0013BC17 /* MainViewModelProtocol.swift in Sources */,
+				BEE0CB042C887CBC0013BC17 /* MiniAppManager.swift in Sources */,
 				BEE0CAE22C8844710013BC17 /* AppDelegate.swift in Sources */,
+				BEE0CAFF2C884D110013BC17 /* MiniAppCell.swift in Sources */,
 				BEE0CAE42C8844710013BC17 /* SceneDelegate.swift in Sources */,
+				BEE0CB022C88781E0013BC17 /* CalculateService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

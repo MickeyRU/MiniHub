@@ -8,7 +8,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let viewController = MainViewController()
+        let calculateService = CalculateService()
+        let viewModel = MainViewModel(calculateService: calculateService)
+        let viewController = MainViewController(viewModel: viewModel)
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
     }
