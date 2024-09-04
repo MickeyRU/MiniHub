@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		BEE0CAE22C8844710013BC17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE12C8844710013BC17 /* AppDelegate.swift */; };
 		BEE0CAE42C8844710013BC17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE32C8844710013BC17 /* SceneDelegate.swift */; };
-		BEE0CAE62C8844710013BC17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE52C8844710013BC17 /* ViewController.swift */; };
-		BEE0CAE92C8844710013BC17 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BEE0CAE82C8844710013BC17 /* Base */; };
+		BEE0CAE62C8844710013BC17 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE52C8844710013BC17 /* MainViewController.swift */; };
 		BEE0CAEB2C8844720013BC17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE0CAEA2C8844720013BC17 /* Assets.xcassets */; };
 		BEE0CAEE2C8844720013BC17 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BEE0CAED2C8844720013BC17 /* Base */; };
 /* End PBXBuildFile section */
@@ -19,8 +18,7 @@
 		BEE0CADE2C8844710013BC17 /* MiniHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE0CAE12C8844710013BC17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEE0CAE32C8844710013BC17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BEE0CAE52C8844710013BC17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BEE0CAE82C8844710013BC17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BEE0CAE52C8844710013BC17 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BEE0CAEA2C8844720013BC17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEE0CAED2C8844720013BC17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEE0CAEF2C8844720013BC17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +54,38 @@
 		BEE0CAE02C8844710013BC17 /* MiniHub */ = {
 			isa = PBXGroup;
 			children = (
-				BEE0CAE12C8844710013BC17 /* AppDelegate.swift */,
-				BEE0CAE32C8844710013BC17 /* SceneDelegate.swift */,
-				BEE0CAE52C8844710013BC17 /* ViewController.swift */,
-				BEE0CAE72C8844710013BC17 /* Main.storyboard */,
-				BEE0CAEA2C8844720013BC17 /* Assets.xcassets */,
-				BEE0CAEC2C8844720013BC17 /* LaunchScreen.storyboard */,
-				BEE0CAEF2C8844720013BC17 /* Info.plist */,
+				BEE0CAF52C8844AC0013BC17 /* Application */,
+				BEE0CAF82C8845020013BC17 /* Configuration */,
+				BEE0CAE52C8844710013BC17 /* MainViewController.swift */,
+				BEE0CAF72C8844EB0013BC17 /* Resources */,
 			);
 			path = MiniHub;
+			sourceTree = "<group>";
+		};
+		BEE0CAF52C8844AC0013BC17 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0CAEC2C8844720013BC17 /* LaunchScreen.storyboard */,
+				BEE0CAE12C8844710013BC17 /* AppDelegate.swift */,
+				BEE0CAE32C8844710013BC17 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		BEE0CAF72C8844EB0013BC17 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0CAEA2C8844720013BC17 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BEE0CAF82C8845020013BC17 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0CAEF2C8844720013BC17 /* Info.plist */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +148,6 @@
 			files = (
 				BEE0CAEB2C8844720013BC17 /* Assets.xcassets in Resources */,
 				BEE0CAEE2C8844720013BC17 /* Base in Resources */,
-				BEE0CAE92C8844710013BC17 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEE0CAE62C8844710013BC17 /* ViewController.swift in Sources */,
+				BEE0CAE62C8844710013BC17 /* MainViewController.swift in Sources */,
 				BEE0CAE22C8844710013BC17 /* AppDelegate.swift in Sources */,
 				BEE0CAE42C8844710013BC17 /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +167,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BEE0CAE72C8844710013BC17 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BEE0CAE82C8844710013BC17 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BEE0CAEC2C8844720013BC17 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +309,6 @@
 				INFOPLIST_FILE = MiniHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -307,6 +318,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = pavel.afanasev.MiniHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -325,7 +340,6 @@
 				INFOPLIST_FILE = MiniHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,6 +349,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = pavel.afanasev.MiniHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
