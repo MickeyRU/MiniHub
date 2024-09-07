@@ -1,40 +1,41 @@
 import UIKit
 import MiniAppInterface
 
-public final class TimeZoneMiniApp: MiniApp, MiniAppViewProviding {
+public final class GuessNumberMiniApp: MiniApp, MiniAppViewProviding {
     public var viewTypeProvider: MiniAppViewProviding {
         return self
     }
     
+    private lazy var guessNumberService: GuessNumberServiceProtocol = {
+        let service = GuessNumberService()
+        return service
+    }()
+    
     public var id: String
     public var visualConfiguration: MiniAppVisualConfiguration
     
-    private lazy var geoTimeService: GeoTimeServiceProtocol = {
-        return GeoTimeService()
-    }()
-    
-    public init(id: String, configuration: MiniAppVisualConfiguration) {
+    public init(id: String, visualConfiguration: MiniAppVisualConfiguration) {
         self.id = id
-        self.visualConfiguration = configuration
+        self.visualConfiguration = visualConfiguration
     }
     
     public func configure(with configuration: MiniAppVisualConfiguration) {
         self.visualConfiguration = configuration
     }
     
-    public func createInteractiveView() -> UIView {
-        return InteractiveView(geoTimeService: geoTimeService)
-    }
-    
     public func createCompactView() -> CompactView {
         return CompactView(appIcon: AssetName.appIcon.data,
-                           appName: "Time Zone",
-                           description: "Время в текущей локации и в разных городах")
+                           appName: "Guess Number",
+                           description: "Угадайте число за наименьшее количество попыток")
+    }
+    
+    public func createInteractiveView() -> UIView {
+        return GuessInteractiveView(guessNumberService: guessNumberService)
     }
     
     public func createFullScreenViewController() -> UIViewController {
-        let viewModel = FullScreenViewModel(application: self,  geoTimeService: geoTimeService)
-        let viewController = FullScreenViewController(application: self, with: viewModel)
+        let viewModel = GuessNumberViewModel(with: guessNumberService)
+        let viewController = GuessNumberViewController(application: self, with: viewModel)
         return viewController
     }
 }

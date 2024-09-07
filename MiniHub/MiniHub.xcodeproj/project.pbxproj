@@ -13,6 +13,7 @@
 		BEA07D4D2C89E5A500E6745F /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA07D4C2C89E5A500E6745F /* NavigationRouter.swift */; };
 		BEA07D4F2C8B59DC00E6745F /* MiniAppCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA07D4E2C8B59DC00E6745F /* MiniAppCellType.swift */; };
 		BEA07D512C8B5A6000E6745F /* HalfScreenMiniAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA07D502C8B5A6000E6745F /* HalfScreenMiniAppCell.swift */; };
+		BEA07D5D2C8C95C300E6745F /* GuessNumberMiniApp in Frameworks */ = {isa = PBXBuildFile; productRef = BEA07D5C2C8C95C300E6745F /* GuessNumberMiniApp */; };
 		BEE0CAE22C8844710013BC17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE12C8844710013BC17 /* AppDelegate.swift */; };
 		BEE0CAE42C8844710013BC17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE32C8844710013BC17 /* SceneDelegate.swift */; };
 		BEE0CAE62C8844710013BC17 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE0CAE52C8844710013BC17 /* MainViewController.swift */; };
@@ -49,6 +50,7 @@
 			files = (
 				BEA07D4A2C89D1A300E6745F /* TimeZoneMiniApp in Frameworks */,
 				BEA07D472C89D18F00E6745F /* MiniAppInterface in Frameworks */,
+				BEA07D5D2C8C95C300E6745F /* GuessNumberMiniApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +185,7 @@
 			packageProductDependencies = (
 				BEA07D462C89D18F00E6745F /* MiniAppInterface */,
 				BEA07D492C89D1A300E6745F /* TimeZoneMiniApp */,
+				BEA07D5C2C8C95C300E6745F /* GuessNumberMiniApp */,
 			);
 			productName = MiniHub;
 			productReference = BEE0CADE2C8844710013BC17 /* MiniHub.app */;
@@ -215,6 +218,7 @@
 			packageReferences = (
 				BEA07D452C89D18F00E6745F /* XCLocalSwiftPackageReference "../MiniAppInterface" */,
 				BEA07D482C89D1A300E6745F /* XCLocalSwiftPackageReference "../TimeZoneMiniApp" */,
+				BEA07D5B2C8C95C300E6745F /* XCLocalSwiftPackageReference "../GuessNumberMiniApp" */,
 			);
 			productRefGroup = BEE0CADF2C8844710013BC17 /* Products */;
 			projectDirPath = "";
@@ -485,6 +489,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../TimeZoneMiniApp;
 		};
+		BEA07D5B2C8C95C300E6745F /* XCLocalSwiftPackageReference "../GuessNumberMiniApp" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../GuessNumberMiniApp;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -495,6 +503,10 @@
 		BEA07D492C89D1A300E6745F /* TimeZoneMiniApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TimeZoneMiniApp;
+		};
+		BEA07D5C2C8C95C300E6745F /* GuessNumberMiniApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GuessNumberMiniApp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

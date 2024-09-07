@@ -44,6 +44,7 @@ final class MainViewController: UIViewController {
         updateTableView()
     }
     
+    
     @objc
     private func segmentedControlChanged(_ sender: UISegmentedControl) {
         viewModel.sizeControlIsTapped(isHalfHeightMode: sender.selectedSegmentIndex == 1)
@@ -51,7 +52,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setupViews() {
-        self.title = "MiniHub"
+        self.title = "Mini Hub"
         view.backgroundColor = .systemBackground
         [segmentedControl, appsTableView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -115,7 +116,6 @@ extension MainViewController: UITableViewDelegate {
         return viewModel.heightForRow(availableHeight: availableHeight)
     }
 }
-
 
 extension MainViewController {
     private func calculateAvailableHeight() -> CGFloat {

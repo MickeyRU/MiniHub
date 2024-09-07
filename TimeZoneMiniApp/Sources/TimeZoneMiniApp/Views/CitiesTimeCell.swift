@@ -37,8 +37,10 @@ final class CitiesTimeCell: UITableViewCell {
     }
     
     func configure(with locationTimeInfo: LocationTimeInfo) {
-        cityNameLabel.text = locationTimeInfo.locationName
-        timeLabel.text = locationTimeInfo.currentTime
+        DispatchQueue.main.async { [weak self] in
+            self?.cityNameLabel.text = locationTimeInfo.locationName
+            self?.timeLabel.text = locationTimeInfo.currentTime
+        }
     }
     
     private func setupViews() {

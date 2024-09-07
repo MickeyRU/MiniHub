@@ -97,5 +97,3 @@ final class FullScreenViewModel: TimeZoneViewModelProtocol {
             .store(in: &cancellables)
     }
 }
-
-struct SomeError: Error {}

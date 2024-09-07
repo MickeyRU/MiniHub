@@ -55,12 +55,12 @@ final class FullScreenViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        view.backgroundColor = .systemBackground
         super.viewDidLoad()
         setupViews()
     }
     
     private func setupViews() {
+        view.backgroundColor = .systemBackground
         self.title = aplication.viewTypeProvider.createCompactView().appName
         [timeLabel, cityLabel].forEach {
             stackView.addArrangedSubview($0)

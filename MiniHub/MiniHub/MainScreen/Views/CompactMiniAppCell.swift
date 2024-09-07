@@ -57,16 +57,25 @@ final class CompactMiniAppCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        appImageView.image = nil
+        appName.text = nil
+        appDescription.text = nil
+        contentView.backgroundColor = nil
+    }
+    
     func configure(with model: MiniAppModel) {
         if let appIconData = model.appIconImage,
            let appIcon = UIImage(data: appIconData) {
-            self.appImageView.image = appIcon
+            appImageView.image = appIcon
         } else {
-            self.appImageView.image = UIImage.noIcon
+            appImageView.image = UIImage.noIcon
         }
-        self.appName.text = model.appName
-        self.appDescription.text = model.appDescripion      
-        self.contentView.backgroundColor = model.appStyle.backgroundColor
+        appName.text = model.appName
+        appDescription.text = model.appDescripion
+        contentView.backgroundColor = model.appStyle.backgroundColor
     }
     
     private func setupViews() {

@@ -51,7 +51,7 @@ final class HalfScreenMiniAppCell: UITableViewCell {
         return stackView
     }()
     
-    private lazy var interactiveView: UIView = {
+    private lazy var interactiveContainer: UIView = {
         let view = UIView()
         return view
     }()
@@ -67,6 +67,16 @@ final class HalfScreenMiniAppCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        appImageView.image = nil
+        appName.text = nil
+        appDescription.text = nil
+        contentView.backgroundColor = nil
+        interactiveContainer.subviews.forEach { $0.removeFromSuperview() }
+    }
+    
     func configure(with model: MiniAppModel, interactiveView: UIView?) {
         if let appIconData = model.appIconImage,
            let appIcon = UIImage(data: appIconData) {
@@ -78,10 +88,10 @@ final class HalfScreenMiniAppCell: UITableViewCell {
         self.appDescription.text = model.appDescripion
         self.contentView.backgroundColor = model.appStyle.backgroundColor
         
-        if let interactiveView {
-            self.interactiveView = interactiveView
-            setupInteractiveView()
-        }
+        
+        guard let interactiveView = interactiveView else { return }
+        interactiveContainer.addSubview(interactiveView)
+        setupInteractiveViewConstraints(interactiveView)
     }
     
     private func setupViews() {
@@ -91,7 +101,7 @@ final class HalfScreenMiniAppCell: UITableViewCell {
             appStackView.addArrangedSubview($0)
         }
         
-        [appStackView, appDescription].forEach {
+        [appStackView, appDescription, interactiveContainer].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
@@ -117,18 +127,21 @@ final class HalfScreenMiniAppCell: UITableViewCell {
             appDescription.topAnchor.constraint(equalTo: appStackView.bottomAnchor, constant: 16),
             appDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             appDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            interactiveContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            interactiveContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            interactiveContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            interactiveContainer.topAnchor.constraint(equalTo: appDescription.bottomAnchor, constant: 16)
         ])
     }
     
-    private func setupInteractiveView() {
-        interactiveView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(interactiveView)
-        
+    private func setupInteractiveViewConstraints(_ view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            interactiveView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            interactiveView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            interactiveView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            interactiveView.topAnchor.constraint(equalTo: appDescription.bottomAnchor, constant: 16)
+            view.leadingAnchor.constraint(equalTo: interactiveContainer.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: interactiveContainer.trailingAnchor),
+            view.topAnchor.constraint(equalTo: interactiveContainer.topAnchor),
+            view.bottomAnchor.constraint(equalTo: interactiveContainer.bottomAnchor)
         ])
     }
     
