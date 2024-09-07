@@ -2,14 +2,14 @@ import UIKit
 
 final class MainViewController: UIViewController {
     private let viewModel: MainViewModelProtocol
-    
     private var segmentedControlHeight: CGFloat = 0.0
     
     private lazy var appsTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(MiniAppCell.self, forCellReuseIdentifier: MiniAppCell.reuseIndentifier)
+        tableView.register(CompactMiniAppCell.self, forCellReuseIdentifier: CompactMiniAppCell.reuseIndentifier)
+        tableView.register(HalfScreenMiniAppCell.self, forCellReuseIdentifier: HalfScreenMiniAppCell.reuseIndentifier)
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
@@ -17,7 +17,7 @@ final class MainViewController: UIViewController {
     }()
     
     private lazy var segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Все", "Доступные"])
+        let segmentedControl = UISegmentedControl(items: ["Доступные", "Интерактивный режим"])
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged(_:)), for: .valueChanged)
         return segmentedControl
@@ -39,10 +39,10 @@ final class MainViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-         super.viewDidLayoutSubviews()
-         segmentedControlHeight = segmentedControl.bounds.height
-         updateTableView()
-     }
+        super.viewDidLayoutSubviews()
+        segmentedControlHeight = segmentedControl.bounds.height
+        updateTableView()
+    }
     
     @objc
     private func segmentedControlChanged(_ sender: UISegmentedControl) {
@@ -51,6 +51,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setupViews() {
+        self.title = "MiniHub"
         view.backgroundColor = .systemBackground
         [segmentedControl, appsTableView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +62,7 @@ final class MainViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
@@ -73,7 +74,7 @@ final class MainViewController: UIViewController {
     }
     
     private func updateTableView() {
-           appsTableView.reloadData()
+        appsTableView.reloadData()
     }
 }
 
@@ -85,11 +86,24 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MiniAppCell.reuseIndentifier, for: indexPath) as? MiniAppCell else {
-            return UITableViewCell()
-        }
+        let cellType = viewModel.cellType(for: indexPath.row)
+        let model = viewModel.model(for: indexPath.row)
+        let view = viewModel.InteractiveView(for: indexPath.row)
         
-        return cell
+        switch cellType {
+        case .compact:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CompactMiniAppCell.reuseIndentifier, for: indexPath) as? CompactMiniAppCell else {
+                return UITableViewCell()
+            }
+            configureCell(cell, with: model, interactiveView: nil, at: indexPath)
+            return cell
+        case .halfScreen:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HalfScreenMiniAppCell.reuseIndentifier, for: indexPath) as? HalfScreenMiniAppCell else {
+                return UITableViewCell()
+            }
+            configureCell(cell, with: model, interactiveView: view, at: indexPath)
+            return cell
+        }
     }
 }
 
@@ -100,13 +114,6 @@ extension MainViewController: UITableViewDelegate {
         let availableHeight = calculateAvailableHeight()
         return viewModel.heightForRow(availableHeight: availableHeight)
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if viewModel.isHalfHeightMode {
-            let miniAppViewController = UIViewController()
-            navigationController?.pushViewController(miniAppViewController, animated: true)
-        }
-    }
 }
 
 
@@ -115,5 +122,19 @@ extension MainViewController {
         let safeAreaInsets = view.safeAreaInsets
         let totalHeight = view.bounds.height
         return totalHeight - safeAreaInsets.top - safeAreaInsets.bottom - segmentedControlHeight - 16
+    }
+    
+    private func configureCell(_ cell: UITableViewCell, with model: MiniAppModel, interactiveView: UIView?, at indexPath: IndexPath) {
+        if let compactCell = cell as? CompactMiniAppCell {
+            compactCell.configure(with: model)
+            compactCell.onOpenButtonTapped = { [weak self] in
+                self?.viewModel.handleOpenButtonTapped(at: indexPath.row)
+            }
+        } else if let halfScreenCell = cell as? HalfScreenMiniAppCell {
+            halfScreenCell.configure(with: model, interactiveView: interactiveView)
+            halfScreenCell.onOpenButtonTapped = { [weak self] in
+                self?.viewModel.handleOpenButtonTapped(at: indexPath.row)
+            }
+        }
     }
 }

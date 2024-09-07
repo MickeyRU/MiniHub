@@ -1,36 +1,61 @@
-import Foundation
+import UIKit
+import Combine
 import MiniAppInterface
+import TimeZoneMiniApp
 
-protocol AppManagerProtocol {
-    func getAllMiniApps() -> [MiniApp]
-    func getMiniApp(by identifier: String) -> MiniApp?
-    func updateMiniAppConfiguration(identifier: String, configuration: MiniAppConfiguration)
+protocol AppManagerProtocol: ObservableObject {
+    var availableMiniAppsPublisher: AnyPublisher<[MiniAppModel], Never> { get }
+    func getMiniAppViewController(by id: String) -> UIViewController?
+    func getInteractiveView(by id: String) -> UIView?
 }
 
 final class MiniAppManager: AppManagerProtocol {
-    private var miniApps: [MiniApp] = []
+    @Published private(set) var availableMiniApps: [MiniAppModel] = []
     
-    public init() {
+    private var miniAppsDictionary: [String: MiniApp] = [:]
+    
+    var availableMiniAppsPublisher: AnyPublisher<[MiniAppModel], Never> {
+        $availableMiniApps.eraseToAnyPublisher()
+    }
+    
+    init() {
         loadMiniApps()
     }
     
-    func getAllMiniApps() -> [MiniApp] {
-        return miniApps
-    }
-    
-    func getMiniApp(by identifier: String) -> MiniApp? {
-        return miniApps.first { $0.id == identifier }
-    }
-    
-    func updateMiniAppConfiguration(identifier: String, configuration: MiniAppConfiguration) {
-        guard let appIndex = miniApps.firstIndex(where: { $0.id == identifier }) else {
-            return
-        }
-        miniApps[appIndex].configure(with: configuration)
+    func getMiniAppViewController(by id: String) -> UIViewController? {
+        guard let miniApp = miniAppsDictionary[id] else { return nil }
+        return miniApp.viewTypeProvider.createFullScreenViewController()
     }
     
     private func loadMiniApps() {
-        // Создаем тут
-        miniApps = []
+        (0..<11).forEach { _ in
+            let timeZoneMiniApp = createTimeZoneMiniApp()
+            miniAppsDictionary[timeZoneMiniApp.id] = timeZoneMiniApp
+            let miniAppModel = convertToCommonMiniAppModel(from: timeZoneMiniApp)
+            availableMiniApps.append(miniAppModel)
+        }
+    }
+    
+    func getInteractiveView(by id: String) -> UIView? {
+        guard let miniApp = miniAppsDictionary[id] else { return nil }
+        return miniApp.viewTypeProvider.createInteractiveView()
+    }
+    
+    private func createTimeZoneMiniApp() -> MiniApp {
+        return TimeZoneMiniApp(id: UUID().uuidString, configuration: MiniAppVisualConfiguration(backgroundColor: .systemBackground))
+    }
+    
+    private func convertToCommonMiniAppModel(from miniApp: MiniApp) -> MiniAppModel {
+        let compactView = miniApp.viewTypeProvider.createCompactView()
+        return MiniAppModel(appIconImage: compactView.appIcon,
+                            appName: compactView.appName,
+                            appId: miniApp.id,
+                            appDescripion: compactView.description,
+                            appStyle: AppVisualStyle(backgroundColor: miniApp.visualConfiguration.backgroundColor)
+        )
+    }
+    
+    private func miniAppFor(id: String) -> MiniApp? {
+        return miniAppsDictionary[id]
     }
 }

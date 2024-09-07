@@ -17,7 +17,11 @@ let package = Package(
     targets: [
         .target(
             name: "TimeZoneMiniApp",
-            dependencies: ["MiniAppInterface"]),
+            dependencies: ["MiniAppInterface"],
+            resources: [
+                .process("Resources")
+            ]
+        ),
         .testTarget(
             name: "TimeZoneMiniAppTests",
             dependencies: ["TimeZoneMiniApp"]),
