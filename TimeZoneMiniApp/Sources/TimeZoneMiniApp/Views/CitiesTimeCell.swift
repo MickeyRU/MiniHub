@@ -2,7 +2,7 @@ import UIKit
 
 final class CitiesTimeCell: UITableViewCell {
     static let reuseIndentifier = "CitiesTimeCell"
-
+    
     private let cityNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .medium)
@@ -37,10 +37,8 @@ final class CitiesTimeCell: UITableViewCell {
     }
     
     func configure(with locationTimeInfo: LocationTimeInfo) {
-        DispatchQueue.main.async { [weak self] in
-            self?.cityNameLabel.text = locationTimeInfo.locationName
-            self?.timeLabel.text = locationTimeInfo.currentTime
-        }
+        self.cityNameLabel.text = locationTimeInfo.locationName
+        self.timeLabel.text = locationTimeInfo.currentTime
     }
     
     private func setupViews() {
