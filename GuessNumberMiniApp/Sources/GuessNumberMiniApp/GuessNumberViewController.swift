@@ -63,11 +63,6 @@ final class GuessNumberViewController: UIViewController {
         setupViews()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupConstraints()
-    }
-    
     private func setupViews() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -86,7 +81,7 @@ final class GuessNumberViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             guessStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            guessStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 1 / 3),
+            guessStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             guessTextField.widthAnchor.constraint(equalToConstant: 250)
         ])
     }
